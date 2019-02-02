@@ -1,0 +1,16 @@
+# interface file for Raspberry-Pi with Wifi
+
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet static
+    wait-delay 5
+    address 192.168.100.1
+    netmask 255.255.255.0
+
+auto wlan0
+iface wlan0 inet static
+    wait-delay 5
+    address 192.168.50.1
+    netmask 255.255.255.0
