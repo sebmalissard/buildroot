@@ -1,0 +1,48 @@
+config BR2_PACKAGE_HALPIN
+    bool "halpin"
+    help
+        Halpin (Hardware Abstraction Layer PIN) is a library 
+        to abstract the GPIO hardware and their functionality
+        (i2c, serial, ...).
+
+if BR2_PACKAGE_HALPIN
+
+choice
+	prompt "Halpin method"
+
+config BR2_HALPIN_CUSTOM_GIT
+	bool "Custom Git repository"
+	help
+	  This option allows Buildroot to get the Halpin source
+	  code from a Git repository.
+
+config BR2_HALPIN_CUSTOM_LOCAL
+	bool "Custom Local directory"
+	help
+	  This option allows Buildroot to get the Halpin source
+	  code from a local directory.
+
+config BR2_HALPIN_DEFAULT
+	bool "Default"
+	help
+	  This option allows Buildroot to get the Halpin source
+	  code from the default source.
+
+endchoice
+
+if BR2_HALPIN_CUSTOM_GIT
+
+config BR2_HALPIN_CUSTOM_GIT_REPOSITORY
+	string "URL of custom Git repository"
+
+config BR2_HALPIN_CUSTOM_GIT_VERSION
+	string "Custom Git repository version"
+endif
+
+if BR2_HALPIN_CUSTOM_LOCAL
+
+config BR2_HALPIN_CUSTOM_LOCAL_DIRECTORY
+	string "Path of custom Local directory"
+
+endif
+endif
