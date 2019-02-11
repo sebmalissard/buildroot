@@ -2,6 +2,7 @@ BR2_arm=y
 BR2_cortex_a7=y
 BR2_ARM_FPU_NEON_VFPV4=y
 BR2_PACKAGE_HOST_LINUX_HEADERS_CUSTOM_4_14=y
+BR2_UCLIBC_CONFIG_FRAGMENT_FILES="board/eurobot/raspberry2/uclicb-extra.config"
 BR2_TOOLCHAIN_BUILDROOT_CXX=y
 BR2_SYSTEM_DHCP="eth0"
 BR2_ROOTFS_OVERLAY="board/eurobot/raspberry2/rootfs_overlay"
