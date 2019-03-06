@@ -10,19 +10,19 @@ if BR2_PACKAGE_HALPIN
 choice
 	prompt "Halpin method"
 
-config BR2_HALPIN_CUSTOM_GIT
+config BR2_PACKAGE_HALPIN_CUSTOM_GIT
 	bool "Custom Git repository"
 	help
 	  This option allows Buildroot to get the Halpin source
 	  code from a Git repository.
 
-config BR2_HALPIN_CUSTOM_LOCAL
+config BR2_PACKAGE_HALPIN_CUSTOM_LOCAL
 	bool "Custom Local directory"
 	help
 	  This option allows Buildroot to get the Halpin source
 	  code from a local directory.
 
-config BR2_HALPIN_DEFAULT
+config BR2_PACKAGE_HALPIN_DEFAULT
 	bool "Default"
 	help
 	  This option allows Buildroot to get the Halpin source
@@ -30,19 +30,44 @@ config BR2_HALPIN_DEFAULT
 
 endchoice
 
-if BR2_HALPIN_CUSTOM_GIT
+if BR2_PACKAGE_HALPIN_CUSTOM_GIT
 
-config BR2_HALPIN_CUSTOM_GIT_REPOSITORY
+config BR2_PACKAGE_HALPIN_CUSTOM_GIT_REPOSITORY
 	string "URL of custom Git repository"
 
-config BR2_HALPIN_CUSTOM_GIT_VERSION
+config BR2_PACKAGE_HALPIN_CUSTOM_GIT_VERSION
 	string "Custom Git repository version"
 endif
 
-if BR2_HALPIN_CUSTOM_LOCAL
+if BR2_PACKAGE_HALPIN_CUSTOM_LOCAL
 
-config BR2_HALPIN_CUSTOM_LOCAL_DIRECTORY
+config BR2_PACKAGE_HALPIN_CUSTOM_LOCAL_DIRECTORY
 	string "Path of custom Local directory"
 
 endif
+
+choice
+	prompt "Halpin configuration"
+	default BR2_PACKAGE_HALPIN_USE_DEFCONFIG
+
+config BR2_PACKAGE_HALPIN_USE_DEFCONFIG
+	bool "Using an in-tree defconfig file"
+
+config BR2_PACKAGE_HALPIN_USE_CUSTOM_CONFIG
+	bool "Using a custom (def)config file"
+
+endchoice
+
+config BR2_PACKAGE_HALPIN_CONFIG
+	string "Configuration file path"
+	depends on BR2_PACKAGE_HALPIN_USE_DEFCONFIG
+	help
+	  Name of the defconfig
+
+config BR2_PACKAGE_HALPIN_CUSTOM_CONFIG_FILE
+	string "Configuration file path"
+	depends on BR2_PACKAGE_HALPIN_USE_CUSTOM_CONFIG
+	help
+	  Path to the Halpin configuration file
+
 endif
