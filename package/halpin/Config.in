@@ -70,4 +70,7 @@ config BR2_PACKAGE_HALPIN_CUSTOM_CONFIG_FILE
 	help
 	  Path to the Halpin configuration file
 
+config BR2_PACKAGE_HALPIN_BUILD_TESTS
+	bool "Build Halpin tests"
+
 endif
