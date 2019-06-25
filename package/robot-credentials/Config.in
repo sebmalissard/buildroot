@@ -1,0 +1,4 @@
+config BR2_PACKAGE_ROBOT_CREDENTIALS
+	bool "robot-credentials"
+	help
+	  This package install the credentials to the target.
