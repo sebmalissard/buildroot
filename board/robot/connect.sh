@@ -25,6 +25,7 @@ while [ ${#} -gt 0 ]; do
         *)
             usage
             echo "Error: Invalid argument: ${opt}"
+            exit 1
             ;;
     esac
 done
