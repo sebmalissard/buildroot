@@ -1,0 +1,42 @@
+#!/bin/sh
+#
+# Load the modules listed in /etc/modules.
+#
+
+load_module()
+{
+    local module args
+    module="$1"
+    args="$2"
+
+    echo "Loading kernel module $module"
+    modprobe $module $args || true
+}
+
+case "$1" in
+  start)
+    files="/etc/modules"
+    if [ -f "$files" ] ; then
+        grep -h '^[^#]' $files |
+        while read module args; do
+            [ "$module" ] || continue
+            load_module "$module" "$args"
+        done
+    fi
+    ;;
+    
+  stop)
+    ;;
+    
+  restart|reload)
+    "$0" stop
+    "$0" start
+    ;;
+    
+  *)
+    echo "Usage: $0 {start|stop|restart}"
+    exit 1
+esac
+
+exit $?
+
